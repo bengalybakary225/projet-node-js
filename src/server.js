@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import usersRouter from "./users/users.routes.js";
 
 dotenv.config();
 const app = express();
@@ -7,12 +8,17 @@ const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Users Management API");
+  res.json({
+    message: "Users Management API",
+  });
 });
+
 const port = process.env.PORT || 3000;
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:${port}");
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
+
+app.use("/users", usersRouter);
 
 // import http from "node:http";
 // import { Json } from "./utils/responses.js";
