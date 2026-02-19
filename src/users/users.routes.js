@@ -5,19 +5,22 @@ import {
   handleGetUserById,
   handlDeleteUser,
   handleUpdateUser,
+  handleSearchUserByEmail,
+  handleCountUsers,
+  handleUpdatePassword,
+  handleCreateManyUsers,
 } from "./users.controller.js";
 
 const router = Router();
 
-//users
-router.post("/", handleCreateUser); //create
-
-router.get("/", handlelistUsers); //afficher
-
-router.get("/:id", handleGetUserById); //afficher un utulisateur avec l'id
-
-router.delete("/:id", handlDeleteUser); //suprimmer un utulisateur
-
-router.patch("/:id", handleUpdateUser); // modifier
+router.get("/count", handleCountUsers);
+router.get("/search", handleSearchUserByEmail);
+router.post("/bulk", handleCreateManyUsers);
+router.patch("/:id/password", handleUpdatePassword);
+router.post("/", handleCreateUser);
+router.get("/", handlelistUsers);
+router.get("/:id", handleGetUserById);
+router.delete("/:id", handlDeleteUser);
+router.patch("/:id", handleUpdateUser);
 
 export default router;

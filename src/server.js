@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import usersRouter from "./users/users.routes.js";
 
 dotenv.config();
+
 const app = express();
 
 app.use(express.json());
@@ -13,13 +14,12 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use("/users", usersRouter);
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
-app.use("/users", usersRouter);
-
 // import http from "node:http";
 // import { Json } from "./utils/responses.js";
 // import { listUsers } from "./users/users.controllers.js";
